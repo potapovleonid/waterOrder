@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: development
+---
+spring:
+  profiles: development
+server:
+  port: 8081
+---
+spring:
+  profiles: production
+server:
+  port: 8082

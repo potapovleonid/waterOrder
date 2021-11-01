@@ -1,0 +1,29 @@
+/* base styles */
+*{
+    margin: 0;
+    padding: 0;
+}
+.base_div{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.center_input_order{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.input_order{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.button_form_order{
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    padding: 5px;
+}

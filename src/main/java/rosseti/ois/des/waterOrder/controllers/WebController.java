@@ -7,11 +7,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class OrderController {
+public class WebController {
 
     @GetMapping("/")
     public String welcome(){
         return "welcome";
+    }
+
+    @GetMapping("/order")
+    public String order(){
+        return "order";
     }
 
 }

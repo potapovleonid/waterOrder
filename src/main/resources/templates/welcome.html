@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <link href="css/base.css" rel="stylesheet">
+    <link href="../css/base.css" th:href="@{css/base.css}" rel="stylesheet">
     <title>Welcome Page</title>
 </head>
 <body>
     <div class="base_div">
         <h1>Welcome on webservice for water order</h1>
         <br>
-        <a href="./order.html">Create order</a>
+        <a th:href="@{/order}">Create order</a>
     </div>
 </body>
 </html>

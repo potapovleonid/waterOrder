@@ -19,4 +19,8 @@ public class WebController {
         return "order";
     }
 
+//    TODO ADD post mapping print order
+
+//    TODO ADD sendmail message
+
 }

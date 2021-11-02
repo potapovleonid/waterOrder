@@ -6,15 +6,14 @@
     <title>Order</title>
 </head>
 <body>
+    <div th:insert="~{menu :: #nav_menu}"></div>
     <div class="base_div, center_input_order">
         <h1>Please leave your order</h1>
-        <a th:href="@{/}">Main page</a>
         <form action="order" method="post">
-            <input class="input_order" type="text" size="50" placeholder="Full name">
-            <input class="input_order" type="text" size="50" placeholder="Address">
-            <input class="input_order" type="text" size="50" placeholder="Cabinet">
-            <input class="input_order" type="text" size="50" placeholder="Quantity water">
-
+                <input class="input_order" type="text" placeholder="Full name">
+                <input class="input_order" type="text" placeholder="Address">
+                <input class="input_order" type="text" placeholder="Cabinet">
+                <input class="input_order" type="number" min="1" max="10" step="1" placeholder="Quantity water">
             <button class="button_form_order">Confirm</button>
         </form>
     </div>

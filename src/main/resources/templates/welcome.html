@@ -6,10 +6,9 @@
     <title>Welcome Page</title>
 </head>
 <body>
+    <div th:insert="~{menu :: #nav_menu}"></div>
     <div class="base_div">
         <h1>Welcome on webservice for water order</h1>
-        <br>
-        <a th:href="@{/order}">Create order</a>
     </div>
 </body>
 </html>

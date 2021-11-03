@@ -12,7 +12,7 @@
         <form th:action="@{/order}" th:object="${order}" method="post">
             <input class="input_order" type="text" th:field="*{full_name}" placeholder="Full name">
             <input class="input_order" type="text" th:field="*{address}" placeholder="Address">
-            <input class="input_order" type="text" th:field="*{cabinet}" placeholder="Cabinet">
+            <input class="input_order" type="number" th:field="*{cabinet}" placeholder="Cabinet">
             <input class="input_order" type="number" th:field="*{quantityOfWater}" min="1" max="10" step="1" placeholder="Quantity water">
             <button class="button_form_order" type="submit">Submit</button>
         </form>

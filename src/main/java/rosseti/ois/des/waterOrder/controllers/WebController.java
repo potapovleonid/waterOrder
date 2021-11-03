@@ -15,13 +15,8 @@ public class WebController {
 
     @GetMapping("/order")
     public String order(Model model){
-        model.addAttribute("orderTest", new Order());
+        model.addAttribute("order", new Order());
         return "order";
-    }
-
-    @GetMapping("/complete")
-    public String complete(){
-        return "complete";
     }
 
     @PostMapping("/order")
@@ -30,7 +25,10 @@ public class WebController {
         return "redirect:/complete";
     }
 
-//    TODO ADD post mapping print order
+    @GetMapping("/complete")
+    public String complete(){
+        return "complete";
+    }
 
 //    TODO ADD sendmail message
 

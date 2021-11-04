@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: development
+---
+spring:
+  profiles: development
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/water_order
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+server:
+  port: 8081
+---
+spring:
+  profiles: production
+server:
+  port: 8082

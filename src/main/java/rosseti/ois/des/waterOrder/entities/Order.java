@@ -1,21 +1,29 @@
 package rosseti.ois.des.waterOrder.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Getter
+@Setter
+@Table(name = "order_tbl")
 public class Order {
+    private static final String SEQUANCE_NAME = "order_seq";
+
     @Id
     @Column(name = "order_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUANCE_NAME)
+    @SequenceGenerator(name = SEQUANCE_NAME, sequenceName = SEQUANCE_NAME, allocationSize = 1)
     private Long id;
+
+    @Column(name = "login_fld")
+    private String login;
 
     @Column(name = "full_name_fld")
     private String full_name;
@@ -24,58 +32,30 @@ public class Order {
     private String address;
 
     @Column(name = "cabinet_fld")
-    private Long cabinet;
+    private Integer cabinet;
 
     @Column(name = "quantity_of_water_fld")
-    private Long quantityOfWater;
+    private Integer quantityOfWater;
 
-    public Long getId() {
-        return id;
-    }
+    @Column(name = "data_created_fld")
+    private Date date;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFull_name() {
-        return full_name;
-    }
-
-    public void setFull_name(String full_name) {
+    public Order(String login, String full_name, String address, Integer cabinet, Integer quantityOfWater) {
+        this.login = login;
         this.full_name = full_name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Long getCabinet() {
-        return cabinet;
-    }
-
-    public void setCabinet(Long cabinet) {
         this.cabinet = cabinet;
-    }
-
-    public Long getQuantityOfWater() {
-        return quantityOfWater;
-    }
-
-    public void setQuantityOfWater(Long quantityOfWater) {
         this.quantityOfWater = quantityOfWater;
     }
 
     @Override
     public String toString() {
-        return "OrderTest{" +
-                "full_name='" + full_name + '\'' + "\n" +
-                ", address='" + address + '\'' + "\n" +
-                ", cabinet=" + cabinet + "\n" +
-                ", quantityOfWater=" + quantityOfWater +
+        return "Order{" +
+                "login='" + login + '\'' +
+                ", \nfull_name='" + full_name + '\'' +
+                ", \naddress='" + address + '\'' +
+                ", \ncabinet=" + cabinet +
+                ", \nquantityOfWater=" + quantityOfWater +
                 '}';
     }
 }

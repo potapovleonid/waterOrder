@@ -1,5 +1,6 @@
-package services;
+package rosseti.ois.des.waterOrder.services;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import rosseti.ois.des.waterOrder.entities.Order;
 import rosseti.ois.des.waterOrder.jpa.OrderRepository;
@@ -7,16 +8,13 @@ import rosseti.ois.des.waterOrder.jpa.OrderRepository;
 import javax.transaction.Transactional;
 
 @Service
+@AllArgsConstructor
+@Transactional
 public class OrderServiceImpl implements OrderService {
 
-    private final OrderRepository repository;
-
-    public OrderServiceImpl(OrderRepository repository) {
-        this.repository = repository;
-    }
+    private OrderRepository repository;
 
     @Override
-    @Transactional
     public void save(Order order) {
         repository.save(order);
     }

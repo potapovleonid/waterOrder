@@ -6,6 +6,7 @@ import rosseti.ois.des.waterOrder.entities.Order;
 import rosseti.ois.des.waterOrder.jpa.OrderRepository;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 
 @Service
 @AllArgsConstructor
@@ -16,6 +17,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void save(Order order) {
+        order.setDate(new Date());
         repository.save(order);
     }
 

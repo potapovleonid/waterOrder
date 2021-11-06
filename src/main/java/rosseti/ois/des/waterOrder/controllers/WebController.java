@@ -31,9 +31,7 @@ public class WebController {
     @PostMapping("/order")
     public String createOrder(Order order){
         System.out.println(order.toString());
-        System.out.println(System.getProperty("user.name"));
-        order.setLogin(System.getProperty("user.name"));
-        order.setDate(new Date());
+        System.out.println(order.getLogin());
         oService.save(order);
         return "redirect:/complete";
     }

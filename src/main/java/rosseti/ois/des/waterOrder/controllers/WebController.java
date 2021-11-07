@@ -4,9 +4,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import rosseti.ois.des.waterOrder.entities.Order;
+import rosseti.ois.des.waterOrder.services.OrderService;
+
+import java.util.Date;
 
 @Controller
 public class WebController {
+
+    private final OrderService oService;
+
+    public WebController(OrderService oService) {
+        this.oService = oService;
+    }
 
     @GetMapping("/")
     public String welcome(){
@@ -22,6 +31,8 @@ public class WebController {
     @PostMapping("/order")
     public String createOrder(Order order){
         System.out.println(order.toString());
+        System.out.println(order.getLogin());
+        oService.save(order);
         return "redirect:/complete";
     }
 

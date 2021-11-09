@@ -8,7 +8,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 public class WebConfig {
 
     @Bean
-    public ThymeleafViewResolver viewResolver(){
+    public ThymeleafViewResolver viewResolver() {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
 
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();

@@ -1,5 +1,6 @@
 package rosseti.ois.des.waterOrder.configs;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
@@ -20,6 +21,12 @@ import rosseti.ois.des.waterOrder.services.DummyUserDetailsService;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Value("${kerberos.service-principal}")
+    private String servicePrincipal;
+
+    @Value("${kerberos.keytab-location}")
+    private String keytabLocation;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -79,8 +86,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public SunJaasKerberosTicketValidator sunJaasKerberosTicketValidator() {
         SunJaasKerberosTicketValidator validator = new SunJaasKerberosTicketValidator();
-        validator.setServicePrincipal("HTTP/10.81.5.100@rosseti.ural");
-        validator.setKeyTabLocation(new FileSystemResource("/tmp/water.keytab"));
+        validator.setServicePrincipal(servicePrincipal);
+        validator.setKeyTabLocation(new FileSystemResource(keytabLocation));
         validator.setDebug(true);
         return validator;
     }

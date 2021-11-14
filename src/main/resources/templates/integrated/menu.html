@@ -8,13 +8,16 @@
 <body>
 <!--TODO ADD autorization button and info user-->
 <!--TODO MOVE IN TABLE-->
-    <div>
-        <div id="nav_menu">
-            <ul class="menu">
-                <li><a th:href="@{/}">Main page</a></li>
-                <li><a th:href="@{/order}">Create order</a></li>
-            </ul>
-        </div>
+<table id="nav_menu" class="all_menu" width="100%">
+    <td align="center">
+        <table class="menu">
+            <tr>
+                <td><a th:href="@{/}">Main page</a></td>
+                <td><a th:href="@{/order}">Create order</a></td>
+            </tr>
+        </table>
+    </td>
+    <td align="right" class="menu_info_user">
         <div sec:authorize="isAuthenticated()">
             <div>
                 Hello, <a th:href="@{/users/profile}"><span sec:authentication="principal.username">Bob</span></a>
@@ -28,6 +31,7 @@
                 Hello. Please <a th:href="@{/login}">Login</a>
             </div>
         </div>
-    </div>
+    </td>
+</table>
 </body>
 </html>

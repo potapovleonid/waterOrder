@@ -13,6 +13,12 @@ spring:
     url: ${database.url}
     username: ${database.user}
     password: ${database.password}
+kerberos:
+  ad-server: ldap://s-dc01.rosseti.ural:389
+  service-principal: HTTP/10.81.5.100@rosseti.ural
+  keytab-location: keytab/water.keytab
+  ldap-search-base: dc=example,dc=org
+  ldap-search-filter: "(| (userPrincipalName={0}) (sAMAccountName={0}))"
 server:
   port: 8081
 ---

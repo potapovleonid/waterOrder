@@ -13,8 +13,13 @@ import org.springframework.security.kerberos.authentication.KerberosAuthenticati
 import org.springframework.security.kerberos.authentication.KerberosServiceAuthenticationProvider;
 import org.springframework.security.kerberos.authentication.sun.SunJaasKerberosClient;
 import org.springframework.security.kerberos.authentication.sun.SunJaasKerberosTicketValidator;
+import org.springframework.security.kerberos.client.config.SunJaasKrb5LoginConfig;
+import org.springframework.security.kerberos.client.ldap.KerberosLdapContextSource;
 import org.springframework.security.kerberos.web.authentication.SpnegoAuthenticationProcessingFilter;
 import org.springframework.security.kerberos.web.authentication.SpnegoEntryPoint;
+import org.springframework.security.ldap.search.FilterBasedLdapUserSearch;
+import org.springframework.security.ldap.userdetails.LdapUserDetailsMapper;
+import org.springframework.security.ldap.userdetails.LdapUserDetailsService;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import rosseti.ois.des.waterOrder.services.DummyUserDetailsService;
 
@@ -22,11 +27,20 @@ import rosseti.ois.des.waterOrder.services.DummyUserDetailsService;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Value("${kerberos.ad-server}")
+    private String adServer;
+
     @Value("${kerberos.service-principal}")
     private String servicePrincipal;
 
     @Value("${kerberos.keytab-location}")
     private String keytabLocation;
+
+    @Value("${kerberos.ldap-search-base}")
+    private String ldapSearchBase;
+
+    @Value("${kerberos.ldab-search-filter}")
+    private String ldapSearchFilter;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -60,6 +74,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         provider.setKerberosClient(client);
         provider.setUserDetailsService(dummyUserDetailService());
         return provider;
+    }
+
+    @Bean
+    public KerberosLdapContextSource kerberosLdapContextSource(){
+        KerberosLdapContextSource source = new KerberosLdapContextSource(adServer);
+        SunJaasKrb5LoginConfig loginConfig = new SunJaasKrb5LoginConfig();
+        loginConfig.setKeyTabLocation(new FileSystemResource(keytabLocation));
+        loginConfig.setServicePrincipal(servicePrincipal);
+        loginConfig.setDebug(true);
+        loginConfig.setIsInitiator(true);
+        source.setLoginConfig(loginConfig);
+        return source;
+    }
+
+    @Bean
+    public LdapUserDetailsService ldapUserDetailsService(){
+        FilterBasedLdapUserSearch filter =
+                new FilterBasedLdapUserSearch(ldapSearchBase, ldapSearchFilter, kerberosLdapContextSource());
+        LdapUserDetailsService service = new LdapUserDetailsService(filter);
+        service.setUserDetailsMapper(new LdapUserDetailsMapper());
+        return service;
     }
 
     @Bean

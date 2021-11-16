@@ -20,7 +20,7 @@
     <td align="right" class="menu_info_user">
         <div sec:authorize="isAuthenticated()">
             <div>
-                Hello, <a th:href="@{/users/profile}"><span sec:authentication="principal.username">Bob</span></a>
+                Hello, <span sec:authentication="name">Unknown</span></a>
             </div>
             <div>
                 <a th:href="@{/logout}">Logout</a>

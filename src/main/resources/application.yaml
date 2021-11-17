@@ -15,8 +15,8 @@ spring:
     password: ${database.password}
 kerberos:
   ad-server: ldap://s-dc01.rosseti.ural:389
-  service-principal: HTTP/10.81.5.100@rosseti.ural
-  keytab-location: keytab
+  service-principal: HTTP/10.81.5.100:8081
+  keytab-location: keytab/waterorder.keytab
   ldap-search-base: dc=example,dc=org
   ldap-search-filter: "(| (userPrincipalName={0}) (sAMAccountName={0}))"
 server:

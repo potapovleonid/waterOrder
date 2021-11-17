@@ -22,6 +22,11 @@ public class WebController {
         return "welcome";
     }
 
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
     @GetMapping("/order")
     public String order(Model model) {
         model.addAttribute("order", new Order());

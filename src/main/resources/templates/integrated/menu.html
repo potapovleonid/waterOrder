@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="../css/base.css" th:href="@{css/base.css}" rel="stylesheet">
+    <title>Menu</title>
+</head>
+<body>
+<!--TODO ADD autorization button and info user-->
+<!--TODO MOVE IN TABLE-->
+<table id="nav_menu" class="all_menu" width="100%">
+    <td align="center">
+        <table class="menu">
+            <tr>
+                <td><a th:href="@{/}">Main page</a></td>
+                <td><a th:href="@{/order}">Create order</a></td>
+            </tr>
+        </table>
+    </td>
+    <td align="right" class="menu_info_user">
+        <div sec:authorize="isAuthenticated()">
+            <div>
+                Hello, <span sec:authentication="name">Unknown</span></a>
+            </div>
+            <div>
+                <a th:href="@{/logout}">Logout</a>
+            </div>
+        </div>
+        <div sec:authorize="!isAuthenticated()">
+            <div>
+                Hello. Please <a th:href="@{/login}">Login</a>
+            </div>
+        </div>
+    </td>
+</table>
+</body>
+</html>

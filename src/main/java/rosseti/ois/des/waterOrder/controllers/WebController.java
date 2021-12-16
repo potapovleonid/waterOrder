@@ -18,18 +18,23 @@ public class WebController {
     }
 
     @GetMapping("/")
-    public String welcome(){
+    public String welcome() {
         return "welcome";
     }
 
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
     @GetMapping("/order")
-    public String order(Model model){
+    public String order(Model model) {
         model.addAttribute("order", new Order());
         return "order";
     }
 
     @PostMapping("/order")
-    public String createOrder(Order order){
+    public String createOrder(Order order) {
         System.out.println(order.toString());
         System.out.println(order.getLogin());
         oService.save(order);
@@ -37,7 +42,7 @@ public class WebController {
     }
 
     @GetMapping("/complete")
-    public String complete(){
+    public String complete() {
         return "complete";
     }
 

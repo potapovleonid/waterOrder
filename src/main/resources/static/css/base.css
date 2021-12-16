@@ -10,6 +10,15 @@
 }
 
 /* menu styles */
+.all_menu{
+    border: 1px solid black;
+}
+
+.menu_info_user{
+    border-left: 1px solid black;
+    width: 10%;
+}
+
 .menu{
     list-style-type: none;
     display: flex;
@@ -17,11 +26,10 @@
     justify-content: center;
 }
 
-.menu li{
+.menu td{
     margin: 5px;
-    width: 100%;
+    padding: 5px;
     height: 30px;
-    line-height: 30px;
     border: 1px solid black;
     border-radius: 10px;
     text-align: center;
